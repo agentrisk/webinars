@@ -13,16 +13,6 @@ function intercomHelper(url, data) {
   };
 
   return axios.post(url, data, { headers });
-
-  // return fetch(url, {
-  //   method,
-  //   headers: {
-  //     Authorization: `Bearer ${token}`,
-  //     Accept: "application/json",
-  //     "Content-Type": "application/json"
-  //   },
-  //   body: JSON.stringify(data)
-  // });
 }
 
 exports.handler = async function(event, context, callback) {
@@ -33,14 +23,6 @@ exports.handler = async function(event, context, callback) {
   try {
     const data = { email, name };
     const response = await intercomHelper(usersUrl, data);
-
-    // if (!response.ok) {
-    //   callback(null, {
-    //     statusCode: response.status,
-    //     body: JSON.stringify({ status: response.statusText, data })
-    //   });
-    // }
-
     const user = await response.json();
 
     callback(null, {
@@ -48,9 +30,14 @@ exports.handler = async function(event, context, callback) {
       body: JSON.stringify(user)
     });
   } catch (error) {
-    console.error(error);
+    if (error.response) {
+      callback(null, {
+        statusCode: error.response.status,
+        body: JSON.stringify({ status: error.response.statusText })
+      });
+    }
     callback(null, {
-      statusCode: error.response.status,
+      statusCode: 500,
       body: JSON.stringify({ status: "Service unavailable" })
     });
   }
