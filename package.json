@@ -1,0 +1,19 @@
+{
+  "name": "webinars",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run netlify-lambda build functions/signup",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agentrisk/webinars.git"
+  },
+  "author": "AgentRisk",
+  "license": "ISC",
+  "dependencies": {
+    "netlify-lambda": "^1.6.3"
+  }
+}
