@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
 function intercomHelper(url, method = "GET", data = undefined) {
   const token = process.env.INTERCOM_ACCESS_TOKEN;
