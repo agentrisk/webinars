@@ -2,6 +2,9 @@ const fetch = require("node-fetch");
 
 function intercomHelper(url, method = "GET", data = undefined) {
   const token = process.env.INTERCOM_ACCESS_TOKEN;
+  if (!token) {
+    console.warn("No Intercom token found");
+  }
 
   return fetch(url, {
     method,
