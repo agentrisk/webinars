@@ -1,20 +1,28 @@
-import fetch from "node-fetch";
+const axios = require("axios").default;
 
-function intercomHelper(url, method = "GET", data = undefined) {
+function intercomHelper(url, data) {
   const token = process.env.INTERCOM_ACCESS_TOKEN;
   if (!token) {
     console.warn("No Intercom token found");
   }
 
-  return fetch(url, {
-    method,
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  });
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    Accept: "application/json",
+    "Content-Type": "application/json"
+  };
+
+  return axios.post(url, data, { headers });
+
+  // return fetch(url, {
+  //   method,
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //     Accept: "application/json",
+  //     "Content-Type": "application/json"
+  //   },
+  //   body: JSON.stringify(data)
+  // });
 }
 
 exports.handler = async function(event, context, callback) {
@@ -24,14 +32,14 @@ exports.handler = async function(event, context, callback) {
 
   try {
     const data = { email, name };
-    const response = await intercomHelper(usersUrl, "POST", data);
+    const response = await intercomHelper(usersUrl, data);
 
-    if (!response.ok) {
-      callback(null, {
-        statusCode: response.status,
-        body: JSON.stringify({ status: response.statusText, data })
-      });
-    }
+    // if (!response.ok) {
+    //   callback(null, {
+    //     statusCode: response.status,
+    //     body: JSON.stringify({ status: response.statusText, data })
+    //   });
+    // }
 
     const user = await response.json();
 
@@ -39,10 +47,10 @@ exports.handler = async function(event, context, callback) {
       statusCode: 200,
       body: JSON.stringify(user)
     });
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
     callback(null, {
-      statusCode: 503,
+      statusCode: error.response.status,
       body: JSON.stringify({ status: "Service unavailable" })
     });
   }
