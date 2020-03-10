@@ -36,16 +36,17 @@ exports.handler = async function(event, context, callback) {
 
   try {
     let response = await lookupUser(email);
-    const data = await response.data;
-
+    const lookupResponse = await response.data;
     let tags = null;
+
     if (
-      data.total_count &&
-      data.users[0].custom_attributes &&
-      data.users[0].custom_attributes.tags
+      lookupResponse.total_count &&
+      lookupResponse.users[0].custom_attributes &&
+      lookupResponse.users[0].custom_attributes.tags
     ) {
-      tags = data.users[0].custom_attributes.tags;
-      if (tags.indexOf(tag) > -1) {
+      tags = JSON.parse(lookupResponse.users[0].custom_attributes.tags);
+
+      if (tags.indexOf(tag) === -1) {
         tags.push(tag);
       } else {
         console.log(`Tag ${tag} is already registered`);
@@ -56,7 +57,7 @@ exports.handler = async function(event, context, callback) {
 
     const custom_attributes = {
       is_advisor: true,
-      tags: tags
+      tags: JSON.stringify(tags)
     };
 
     const data = {
@@ -64,6 +65,7 @@ exports.handler = async function(event, context, callback) {
       name,
       custom_attributes
     };
+
     await createOrUpdateUser(data);
 
     callback(null, {
