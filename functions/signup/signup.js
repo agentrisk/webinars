@@ -49,7 +49,7 @@ exports.handler = async function(event, context, callback) {
       if (tags.indexOf(tag) === -1) {
         tags.push(tag);
       } else {
-        callback(null, {
+        return callback(null, {
           statusCode: 204,
           body: JSON.stringify({ status: "Already registered" })
         });
@@ -71,7 +71,7 @@ exports.handler = async function(event, context, callback) {
 
     await createOrUpdateUser(data);
 
-    callback(null, {
+    return callback(null, {
       statusCode: 200,
       body: JSON.stringify({ status: "OK" })
     });
@@ -79,12 +79,13 @@ exports.handler = async function(event, context, callback) {
     console.warn(error);
 
     if (error.response) {
-      callback(null, {
+      return callback(null, {
         statusCode: error.response.status,
         body: JSON.stringify({ status: error.response.statusText })
       });
-    }
-    callback(null, {
+    } 
+    
+    return callback(null, {
       statusCode: 500,
       body: JSON.stringify({ status: "Service unavailable" })
     });
