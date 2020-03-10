@@ -49,7 +49,10 @@ exports.handler = async function(event, context, callback) {
       if (tags.indexOf(tag) === -1) {
         tags.push(tag);
       } else {
-        console.log(`Tag ${tag} is already registered`);
+        callback(null, {
+          statusCode: 204,
+          body: JSON.stringify({ status: "Already registered" })
+        });
       }
     } else {
       tags = [tag];
