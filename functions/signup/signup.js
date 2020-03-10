@@ -1,35 +1,78 @@
 const axios = require("axios").default;
 
-function intercomHelper(url, data) {
+const baseUrl = "https://api.intercom.io";
+const usersUrl = `${baseUrl}/users`;
+
+function getHeaders() {
   const token = process.env.INTERCOM_ACCESS_TOKEN;
   if (!token) {
     console.warn("No Intercom token found");
   }
 
-  const headers = {
+  return {
     Authorization: `Bearer ${token}`,
     Accept: "application/json",
     "Content-Type": "application/json"
   };
+}
+
+function createOrUpdateUser(data) {
+  const headers = getHeaders();
+  const url = usersUrl;
 
   return axios.post(url, data, { headers });
 }
 
+function lookupUser(email) {
+  const headers = getHeaders();
+  const url = `${usersUrl}?email=${email}`;
+
+  return axios.get(url, { headers });
+}
+
 exports.handler = async function(event, context, callback) {
   const { body } = event;
-  const { email, name } = JSON.parse(body);
-  const usersUrl = "https://api.intercom.io/users";
+  const { email, name, tag } = JSON.parse(body);
 
   try {
-    const data = { email, name };
-    const response = await intercomHelper(usersUrl, data);
-    const user = await response.json();
+    let response = await lookupUser(email);
+    const data = await response.data;
+
+    let tags = null;
+    if (
+      data.total_count &&
+      data.users[0].custom_attributes &&
+      data.users[0].custom_attributes.tags
+    ) {
+      tags = data.users[0].custom_attributes.tags;
+      if (tags.indexOf(tag) > -1) {
+        tags.push(tag);
+      } else {
+        console.log(`Tag ${tag} is already registered`);
+      }
+    } else {
+      tags = [tag];
+    }
+
+    const custom_attributes = {
+      is_advisor: true,
+      tags: tags
+    };
+
+    const data = {
+      email,
+      name,
+      custom_attributes
+    };
+    await createOrUpdateUser(data);
 
     callback(null, {
       statusCode: 200,
-      body: JSON.stringify(user)
+      body: JSON.stringify({ status: "OK" })
     });
   } catch (error) {
+    console.warn(error);
+
     if (error.response) {
       callback(null, {
         statusCode: error.response.status,
