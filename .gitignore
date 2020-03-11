@@ -1,3 +1,6 @@
+# Build directory for functions
+functions
+
 # Logs
 logs
 *.log
