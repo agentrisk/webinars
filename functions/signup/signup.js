@@ -2,6 +2,8 @@ const axios = require("axios").default;
 
 const baseUrl = "https://api.intercom.io";
 const usersUrl = `${baseUrl}/users`;
+const tagsUrl = `${baseUrl}/tags`;
+const webinarTag = "Webinar";
 
 function getHeaders() {
   const token = process.env.INTERCOM_ACCESS_TOKEN;
@@ -23,11 +25,12 @@ function createOrUpdateUser(data) {
   return axios.post(url, data, { headers });
 }
 
-function lookupUser(email) {
+function tagUser(email, tagName) {
   const headers = getHeaders();
-  const url = `${usersUrl}?email=${email}`;
+  const url = tagsUrl;
+  const data = { name: tagName, users: [{ email }] };
 
-  return axios.get(url, { headers });
+  return axios.post(url, data, { headers });
 }
 
 exports.handler = async function(event, context, callback) {
@@ -35,41 +38,15 @@ exports.handler = async function(event, context, callback) {
   const { email, name, tag } = JSON.parse(body);
 
   try {
-    let response = await lookupUser(email);
-    const lookupResponse = await response.data;
-    let tags = null;
-
-    if (
-      lookupResponse.total_count &&
-      lookupResponse.users[0].custom_attributes &&
-      lookupResponse.users[0].custom_attributes.tags
-    ) {
-      tags = JSON.parse(lookupResponse.users[0].custom_attributes.tags);
-
-      if (tags.indexOf(tag) === -1) {
-        tags.push(tag);
-      } else {
-        return callback(null, {
-          statusCode: 204,
-          body: JSON.stringify({ status: "Already registered" })
-        });
-      }
-    } else {
-      tags = [tag];
-    }
-
-    const custom_attributes = {
-      is_advisor: true,
-      tags: JSON.stringify(tags)
-    };
-
     const data = {
       email,
       name,
-      custom_attributes
+      custom_attributes: { is_advisor: true }
     };
 
     await createOrUpdateUser(data);
+    await tagUser(email, webinarTag);
+    await tagUser(email, tag);
 
     return callback(null, {
       statusCode: 200,
@@ -83,8 +60,8 @@ exports.handler = async function(event, context, callback) {
         statusCode: error.response.status,
         body: JSON.stringify({ status: error.response.statusText })
       });
-    } 
-    
+    }
+
     return callback(null, {
       statusCode: 500,
       body: JSON.stringify({ status: "Service unavailable" })
