@@ -55,8 +55,8 @@ def create_posts(content_folder):
     templates = [f for f in os.listdir(template_dir) if f.endswith('.html')]
     for template in templates:
         html_template = open(template_dir + "/" + template, "r").read()
-        map(lambda x: generate_page(content_folder,
-                                    template, html_template, x), content_data)
+        list(map(lambda x: generate_page(content_folder,
+                                         template, html_template, x), content_data))
 
 
 def run():
@@ -67,7 +67,7 @@ def run():
 
     # apply them to their templates
     print(content_folders)
-    map(lambda x: create_posts(x), content_folders)
+    list(map(lambda x: create_posts(x), content_folders))
 
 
 if __name__ == '__main__':
