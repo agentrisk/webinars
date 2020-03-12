@@ -34,8 +34,15 @@ def generate_page(template_dir, template, template_html, post):
             replace_tag, post["data"].get(tag.strip()))
 
         # write file
-        f = open(os.path.join("site", template_dir,
-                              template.split(".html")[0] + "-" + post["name"].split(".json")[0]) + ".html", "w+")
+        f = open(
+            os.path.join(
+                "site",
+                template_dir,
+                template.split(".html")[0] +
+                "-" +
+                post["name"].split(".json")[0]) +
+            ".html",
+            "w+")
         f.write(template_html)
         f.close()
 
@@ -60,8 +67,6 @@ def create_posts(content_folder):
 
 
 def run():
-    config = read_config()  # never used
-
     # get all content folders
     content_folders = [f for f in os.listdir("content/")]
 

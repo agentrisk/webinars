@@ -21,7 +21,7 @@ function processForm(form) {
     .then(handleErrors)
     .then(response => {
       console.debug(response);
-      pieces = window.location.pathname.split("index")
+      pieces = window.location.pathname.split("index");
       window.location.replace(pieces[0] + "thank-you" + pieces[1]);
     })
     .catch(error => {

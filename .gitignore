@@ -1,3 +1,6 @@
+# Build directory for static HTML
+site/webinar
+
 # Build directory for functions
 functions
 

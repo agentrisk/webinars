@@ -1,3 +1,4 @@
 [build]
+command = "make clean && make all"
 publish = "site"
 functions = "functions/"
