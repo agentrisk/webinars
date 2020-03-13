@@ -22,7 +22,11 @@ function processForm(form) {
     .then(response => {
       console.debug(response);
       pieces = window.location.pathname.split("index");
-      window.location.replace(pieces[0] + "thank-you" + pieces[1]);
+      let newUrl = pieces[0] + "thank-you";
+      if (pieces[1]) {
+        newUrl += pieces[1];
+      }
+      window.location.replace(newUrl);
     })
     .catch(error => {
       console.warn(error);
