@@ -46,7 +46,9 @@ exports.handler = async function(event, context, callback) {
 
     await createOrUpdateUser(data);
     await tagUser(email, webinarTag);
-    await tagUser(email, tag);
+    if (tag) {
+      await tagUser(email, tag);
+    }
 
     return callback(null, {
       statusCode: 200,
