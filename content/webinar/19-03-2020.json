@@ -1,14 +1,16 @@
 {
-    "html_title": "Free Webinar",
-    "webinar_title": "Making the best out of a bad situation",
-    "webinar_subtitle": "How tax-loss harvesting can help your long-term investments come out on top after a market drop",
-    "small_description": "The market went down another 10% and you are thinking: Should I liquidate now or it is too late? Making informed and data-driven decisions are critical in moments of panic as not only can save you a lot of money but make you even more in the long run.",
-    "bullet_point_1": "Historically, what would have happened if you sold/bought during market crashes",
-    "bullet_point_2": "Why tax-loss harvesting is *very* important during market volatility and how to do it super fast",
-    "bullet_point_3":  "Open discussion with our Investment and Machine Learning team",
-    "datetime_format_PST_calendar": "March 19, 2020 13:00",
-    "date_free_text": "March 19th, 2020",
-    "time_free_text": "1 PM PST | 4PM EST",
-    "tag": "Webinar-TaxHarvesting-19-March-2020",
-    "youtube_link": "https://youtu.be/JHfi2H0YvWU"
+  "html_title": "Free Webinar",
+  "url_suffix": "19-03-2020",
+  "webinar_title": "Making the best out of a bad situation",
+  "webinar_subtitle": "How tax-loss harvesting can help your long-term investments come out on top after a market drop",
+  "small_description": "The market went down another 10% and you are thinking: Should I liquidate now or it is too late? Making informed and data-driven decisions are critical in moments of panic as not only can save you a lot of money but make you even more in the long run.",
+  "bullet_point_1": "Historically, what would have happened if you sold/bought during market crashes",
+  "bullet_point_2": "Why tax-loss harvesting is *very* important during market volatility and how to do it super fast",
+  "bullet_point_3": "Open discussion with our Investment and Machine Learning team",
+  "datetime_format_PST_calendar": "March 19, 2020 13:00",
+  "date_free_text": "March 19th, 2020",
+  "time_free_text": "1PM PST | 4PM EST",
+  "tag": "Webinar-TaxHarvesting-19-March-2020",
+  "youtube_link": "https://youtu.be/JHfi2H0YvWU",
+  "meta_img_url": "https://storage.googleapis.com/agentrisk_webinars_files/03-19-2020-meta-img.png"
 }
