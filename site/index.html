@@ -1,86 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Refresh" content="0; url=https://webinars.agentrisk.com/webinar/index-16-04-2020" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <link href="img/favicon.ico" rel="icon" type="image/x-icon" />
-    <title>AgentRisk Webinars</title>
-  </head>
 
-  <body class="bg-white">
-    <div class="container mx-auto px-2">
-      <div class="max-w-md mx-auto flex p-6">
-        <img src="img/logo.png" alt="" />
-      </div>
-      <div class="md:flex mb-10">
-        <div class="flex-1">
-          <div class="max-w-lg mx-auto p-6 bg-white shadow-xl bg-blue-600">
-            <div class="ml-6">
-              <h4 class="text-xl font-bold text-gray-100">
-                Never miss out on one of our live webinars!
-              </h4>
+<head>
+  <meta http-equiv="Refresh" content="0; url=https://webinars.agentrisk.com/webinar/index-16-04-2020" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="img/favicon.ico" rel="icon" type="image/x-icon" />
+  <title>AgentRisk Webinars</title>
+</head>
+
+<body class="bg-white">
+  <div class="container mx-auto px-2">
+    <div class="max-w-md mx-auto flex p-6">
+      <img src="img/logo.png" alt="" />
+    </div>
+    <div class="md:flex mb-10">
+      <div class="flex-1">
+        <div class="max-w-lg mx-auto p-6 bg-white shadow-xl bg-blue-600">
+          <div class="ml-6">
+            <h4 class="text-xl font-bold text-gray-100">
+              Never miss out on one of our live webinars!
+            </h4>
+          </div>
+        </div>
+        <div class="max-w-lg mx-auto mt-4 p-6 bg-gray-800 shadow-xl">
+          <h3 class="p-2 text-gray-100 font-bold text-2xl">
+            Sign up now
+          </h3>
+          <form id="signup-form" name="signup-form" class="w-full" method="POST" data-netlify="true">
+            <div class="p-2">
+              <input
+                class="bg-gray-800 placeholder-gray-500 appearance-none border-2 border-gray-600 w-full py-3 px-4 text-gray-400 leading-tight focus:outline-none focus:border-gray-500"
+                type="text" name="name" placeholder="Full name" autocomplete="name" required />
             </div>
-          </div>
-          <div class="max-w-lg mx-auto mt-4 p-6 bg-gray-800 shadow-xl">
-            <h3 class="p-2 text-gray-100 font-bold text-2xl">
-              Sign up now
-            </h3>
-            <form
-              id="signup-form"
-              name="signup-form"
-              class="w-full"
-              method="POST"
-              data-netlify="true"
-            >
-              <div class="p-2">
-                <input
-                  class="bg-gray-800 placeholder-gray-500 appearance-none border-2 border-gray-600 w-full py-3 px-4 text-gray-400 leading-tight focus:outline-none focus:border-gray-500"
-                  type="text"
-                  name="name"
-                  placeholder="Full name"
-                  autocomplete="name"
-                  required
-                />
-              </div>
-              <div class="p-2">
-                <input
-                  class="bg-gray-800 placeholder-gray-500 appearance-none border-2 border-gray-600 w-full py-3 px-4 text-gray-400 leading-tight focus:outline-none focus:border-gray-500"
-                  name="email"
-                  type="email"
-                  placeholder="Email"
-                  autocomplete="email"
-                  required
-                />
-              </div>
-              <div class="p-2 mb-2">
-                <input
-                  class="bg-gray-800 placeholder-gray-500 appearance-none border-2 border-gray-600 w-full py-3 px-4 text-gray-400 leading-tight focus:outline-none focus:border-gray-500"
-                  type="text"
-                  name="companyName"
-                  placeholder="Company name"
-                  autocomplete="organization"
-                  required
-                />
-              </div>
-              <div class="p-2">
-                <button
-                  class="text-base text-green-600 w-full shadow p-2 bg-white hover:bg-green-600 hover:text-white focus:shadow-outline focus:outline-none text-white font-bold"
-                  type="submit"
-                >
-                  Reserve your spot
-                </button>
-              </div>
-            </form>
-          </div>
+            <div class="p-2">
+              <input
+                class="bg-gray-800 placeholder-gray-500 appearance-none border-2 border-gray-600 w-full py-3 px-4 text-gray-400 leading-tight focus:outline-none focus:border-gray-500"
+                name="email" type="email" placeholder="Email" autocomplete="email" required />
+            </div>
+            <div class="p-2 mb-2">
+              <input
+                class="bg-gray-800 placeholder-gray-500 appearance-none border-2 border-gray-600 w-full py-3 px-4 text-gray-400 leading-tight focus:outline-none focus:border-gray-500"
+                type="text" name="companyName" placeholder="Company name" autocomplete="organization" required />
+            </div>
+            <div class="p-2">
+              <button
+                class="text-base text-green-600 w-full shadow p-2 bg-white hover:bg-green-600 hover:text-white focus:shadow-outline focus:outline-none text-white font-bold"
+                type="submit">
+                Reserve your spot
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
+  </div>
 
-    <script src="../js/index.js"></script>
-  </body>
+  <script src="../js/index.js"></script>
+</body>
+
 </html>
