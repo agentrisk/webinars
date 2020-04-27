@@ -68,7 +68,7 @@ def create_posts(content_folder):
 
 def run():
     # get all content folders
-    content_folders = [f for f in os.listdir("content/")]
+    content_folders = [f for f in os.listdir("content/") if "." not in f]
 
     # apply them to their templates
     print(content_folders)
