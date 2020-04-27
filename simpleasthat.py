@@ -42,7 +42,7 @@ def generate_page(template_dir, template, template_html, post):
                 "-" +
                 post["name"].split(".json")[0]) +
             ".html",
-            "w+")
+            "w+", encoding='utf-8')
         f.write(template_html)
         f.close()
 
@@ -61,7 +61,8 @@ def create_posts(content_folder):
     # fill up template pages with the content data
     templates = [f for f in os.listdir(template_dir) if f.endswith('.html')]
     for template in templates:
-        html_template = open(template_dir + "/" + template, "r").read()
+        html_template = open(os.path.join(template_dir, template),
+                             "r", encoding='utf-8').read()
         list(map(lambda x: generate_page(content_folder,
                                          template, html_template, x), content_data))
 
