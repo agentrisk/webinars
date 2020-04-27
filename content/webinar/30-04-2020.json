@@ -1,0 +1,16 @@
+{
+  "html_title": "Free Webinar",
+  "url_suffix": "30-04-2020",
+  "webinar_title": "Engineering a portfolio for a volatile market",
+  "webinar_subtitle": "Learn how to build your own portfolio in 30 minutes, using data, mathematics and free tools.",
+  "small_description": "",
+  "bullet_point_1": "What are the main components of a portfolio",
+  "bullet_point_2": "How to make yours from scratch",
+  "bullet_point_3": "How to make it more/less aggressive",
+  "datetime_format_UTC_calendar": "April 30, 2020 18:00",
+  "date_free_text": "April 30th, 2020",
+  "time_free_text": "11AM PST | 2PM EST",
+  "tag": "Webinar-EngPort-30-April-2020",
+  "youtube_link": "https://youtu.be/vpztQogiMNU",
+  "meta_img_url": "https://console.cloud.google.com/storage/browser/_details/agentrisk_webinars_files/04-30-2020-meta-img.png"
+}
