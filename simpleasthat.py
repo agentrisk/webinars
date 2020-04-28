@@ -7,6 +7,7 @@ darksun4@gmail.com
 """
 import os
 import re
+from io import open # for Python 2
 
 
 def read_config():
