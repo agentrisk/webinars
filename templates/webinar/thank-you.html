@@ -1,85 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <link href="../img/favicon.ico" rel="icon" type="image/x-icon" />
-    <script src="../js/ouical.js"></script>
-    <title>Thank you!</title>
-  </head>
 
-  <body class="bg-gray-100">
-    <main class="container h-screen m-auto flex content-center justify-center">
-      <div
-        class="w-1/2 h-64 m-auto flex flex-col content-center justify-center text-center"
-      >
-        <h1 class="text-4xl text-gray-800 mb-2">
-          Thank you for registering!
-        </h1>
-        <h3 class="text-xl text-gray-800 mb-5">
-          We'll send you an email with the webinar details.
-        </h3>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="../img/favicon.ico" rel="icon" type="image/x-icon" />
+  <script src="../js/ouical.js"></script>
+  <title>Thank you!</title>
+</head>
 
-        <div class="mb-5 w-full flex flex-row justify-between">
-          <button
-            id="btn-google"
-            class="w-1/4 m-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Add to Google Calendar
-          </button>
+<body class="bg-gray-100">
+  <main class="container h-screen m-auto flex content-center justify-center">
+    <div class="w-1/2 h-64 m-auto flex flex-col content-center justify-center text-center">
+      <h1 class="text-4xl text-gray-800 mb-2">
+        Thank you for registering!
+      </h1>
+      <h3 class="text-xl text-gray-800 mb-5">
+        We'll send you an email with the webinar details.
+      </h3>
 
-          <button
-            id="btn-outlook"
-            class="w-1/4 m-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Add to Outlook Calendar
-          </button>
+      <div class="mb-5 w-full flex flex-row justify-between">
+        <button id="btn-google"
+          class="w-1/4 m-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-1 rounded">
+          Add to Google Calendar
+        </button>
 
-          <button
-            id="btn-ical"
-            class="w-1/4 m-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
-            Add to iCal Calendar
-          </button>
-        </div>
+        <button id="btn-outlook"
+          class="w-1/4 m-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-1 rounded">
+          Add to Outlook Calendar
+        </button>
 
-        <p class="text-green-700 hover:text-green-900">
-          <a href="https://overlay.agentrisk.com/"
-            >← Back to overlay.agentrisk.com</a
-          >
-        </p>
+        <button id="btn-ical" class="w-1/4 m-auto bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-1 rounded">
+          Add to iCal Calendar
+        </button>
       </div>
-    </main>
 
-    <script>
-      myCalendar = createLinks({
-        options: {
-          class: "not used"
-        },
-        data: {
-          title: "[Webinar] {{webinar_title}}",
-          start: new Date("{{datetime_format_UTC_calendar}}"),
-          duration: 40,
-          address: "{{youtube_link}}",
-          description: ""
-        }
-      });
+      <p class="text-green-700 hover:text-green-900">
+        <a href="https://agentrisk.com/">← Back to AgentRisk.com</a>
+      </p>
+    </div>
+  </main>
 
-      googleBtn = document.getElementById("btn-google");
-      googleBtn.setAttribute("onclick", "location.href = myCalendar['google']");
+  <script>
+    myCalendar = createLinks({
+      options: {
+        class: "not used"
+      },
+      data: {
+        title: "[Webinar] {{webinar_title}}",
+        start: new Date("{{datetime_format_UTC_calendar}}"),
+        duration: 40,
+        address: "{{youtube_link}}",
+        description: ""
+      }
+    });
 
-      outlookBtn = document.getElementById("btn-outlook");
-      outlookBtn.setAttribute(
-        "onclick",
-        "location.href = myCalendar['outlook']"
-      );
+    googleBtn = document.getElementById("btn-google");
+    googleBtn.setAttribute("onclick", "location.href = myCalendar['google']");
 
-      icalBtn = document.getElementById("btn-ical");
-      icalBtn.setAttribute("onclick", "location.href = myCalendar['ical']");
-    </script>
-  </body>
+    outlookBtn = document.getElementById("btn-outlook");
+    outlookBtn.setAttribute(
+      "onclick",
+      "location.href = myCalendar['outlook']"
+    );
+
+    icalBtn = document.getElementById("btn-ical");
+    icalBtn.setAttribute("onclick", "location.href = myCalendar['ical']");
+  </script>
+</body>
+
 </html>
