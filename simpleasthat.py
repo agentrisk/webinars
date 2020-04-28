@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Uber simple static site generator in Python
 
