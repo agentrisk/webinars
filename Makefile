@@ -1,5 +1,5 @@
 static_files:
-	python simpleasthat.py
+	./simpleasthat.py
 
 lambda_bundle:
 	npm run build
